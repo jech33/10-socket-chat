@@ -1,63 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Google Signin</title>
 
-    <meta name="google-signin-client_id" content="1023916028923-mnn067lcjn3itrr0lo8oj1s07kddgrcj.apps.googleusercontent.com">
+    <meta
+      name="google-signin-client_id"
+      content="1023916028923-mnn067lcjn3itrr0lo8oj1s07kddgrcj.apps.googleusercontent.com"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body class="container">
+    <div class="row mt-5">
+      <div class="col-sm-6">
+        <h1>Google Sign-in</h1>
+        <hr />
+        <br />
+        <div
+          id="g_id_onload"
+          data-client_id="285467503894-dt72langgarqnjdc3n77lmga4pqml21a.apps.googleusercontent.com"
+          data-auto_prompt="false"
+          data-callback="handleCredentialResponse"
+        ></div>
 
-</head>
-<body>
+        <div
+          class="g_id_signin"
+          data-type="standard"
+          data-size="large"
+          data-theme="outline"
+          data-text="sign_in_with"
+          data-shape="rectangular"
+          data-logo_alignment="left"
+        ></div>
 
-    <h1>Google Signin</h1>
-    <hr>
+        <br />
+        <button class="btn btn-outline-danger" id="google_signout">
+          Signout
+        </button>
+      </div>
 
-    <div class="g-signin2" data-onsuccess="onSignIn"></div>
+      <div class="col-sm-6">
+        <h1>Rest Sign-in</h1>
+        <hr />
+        <br />
+        
+        <form class="d-flex flex-column">
+          <input type="text" name="correo" class="form-control mb-2" placeholder="Correo" />
+          <input type="text" name="password" class="form-control mb-2" placeholder="Password" />
+          <button type="submit" class="btn btn-outline-primary">
+            Ingresar
+          </button>
+        </form>
 
+      </div>
 
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    </div>
 
-    <a href="#" onclick="signOut();">Sign out</a>
-
-    <script>
-
-        console.log(window.location.hostname.includes('localhost'))
-
-        var url = ( window.location.hostname.includes('localhost') )
-                    ? 'http://localhost:8080/api/auth/google'
-                    : 'https://restserver-curso-fher.herokuapp.com/api/auth/google';
-
-
-        function onSignIn(googleUser) {
-
-            var profile = googleUser.getBasicProfile();
-            console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-            console.log('Name: ' + profile.getName());
-            console.log('Image URL: ' + profile.getImageUrl());
-            console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-
-            var id_token = googleUser.getAuthResponse().id_token;
-            const data = { id_token };
-
-            fetch( url, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify( data )
-            })
-            .then( resp => resp.json() )
-            .then( data => console.log( 'Nuestro server', data ) )
-            .catch( console.log );
-            
-        }
-
-        function signOut() {
-            var auth2 = gapi.auth2.getAuthInstance();
-            auth2.signOut().then(function () {
-            console.log('User signed out.');
-            });
-        }
-    </script>
-
-</body>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script src="./js/auth.js"></script>
+  </body>
 </html>
