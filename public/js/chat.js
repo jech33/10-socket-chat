@@ -111,6 +111,16 @@ txtMensaje.addEventListener('keyup', ({ keyCode }) => {
     txtMensaje.value = '';
 })
 
+btnSalir.onclick = () => {
+    console.log(google.accounts.id);
+    google.accounts.id.disableAutoSelect();
+
+    google.accounts.id.revoke(localStorage.getItem("email"), (done) => {
+        localStorage.clear();
+        location.reload();
+    });
+};
+
 
 const main = async () => {
 
