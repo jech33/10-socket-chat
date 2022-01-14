@@ -1,6 +1,6 @@
 const url = window.location.hostname.includes("localhost")
     ? "http://localhost:8081/api/auth/"
-    : "https://rest-server-socket-chat.herokuapp.com/";
+    : "https://rest-server-socket-chat.herokuapp.com/api/auth/";
 
 
 let usuario = null;
