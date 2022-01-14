@@ -16,6 +16,8 @@ const socketController = async (socket = new Socket(), io) => {
     io.emit('usuarios-activos', chatMensajes.usuariosArr);
     socket.emit('recibir-mensajes', chatMensajes.ultimos10);
 
+    
+
     // Limpiar cuando alguien se desconecta
     socket.on('disconnect', () => {
         chatMensajes.desconectarUsuario(usuario._id);
