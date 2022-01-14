@@ -75,12 +75,12 @@ class Server {
 
     listen() {
         this.server.listen( this.port, () => {
-            console.log('Servidor corriendo en puerto', this.port );
+            console.log(`Servidor corriendo en http://localhost:${this.port}`);
         });
     }
 
     sockets() {
-        this.io.on('connection', socketController);
+        this.io.on('connection', (socket) => socketController(socket, this.io));
     }
 
 }

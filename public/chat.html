@@ -1,15 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>----</title>
-</head>
-<body class="container">
-    
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body class="container d-flex flex-column flex-grow-1">
+    <div class="row mt-5">
+      <div class="col col-sm-6">
+        <h3>Enviar mensaje</h3>
+        <hr />
+
+        <input
+          type="text"
+          id="txtUid"
+          class="form-control mb-2"
+          placeholder="uid"
+          autocomplete="off"
+        />
+
+        <input
+          type="text"
+          id="txtMensaje"
+          class="form-control mb-2"
+          placeholder="Mensaje"
+          autocomplete="off"
+        />
+
+        <h3>Usuarios</h3>
+        <hr />
+        <ul id="ulUsuarios"></ul>
+      </div>
+
+      <div class="col col-sm-6">
+        <h3>Chat completo</h3>
+        <hr />
+        <ul
+          id="ulMensajes"
+          class="d-flex flex-column flex-grow-1"
+          style="max-height: 60vh; overflow-y: scroll;"
+        ></ul>
+      </div>
+    </div>
+
+    <div class="row justify-content-center mt-5">
+      <button id="btnSalir" class="btn btn-outline-danger col-5 mb-5">
+        Logout
+      </button>
+    </div>
 
     <script src="./socket.io/socket.io.js"></script>
     <script src="./js/chat.js"></script>
-</body>
+  </body>
 </html>
